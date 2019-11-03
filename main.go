@@ -49,7 +49,6 @@ func main() {
 	if err != nil {
 		return
 	}
-
 	if err = m.Mock(out, iface, *mockName); err != nil {
 		return
 	}

@@ -4,28 +4,31 @@
 package dotimport_test
 
 import (
-	"sync"
-
 	"github.com/sudo-suhas/moqit/pkg/moq/testpackages/dotimport"
+	"sync"
 )
 
 var (
 	lockServiceMockUser sync.RWMutex
 )
 
-// ServiceMock is a mock implementation of Service.
+// Ensure, that ServiceMock does implement dotimport.Service.
+// If this is not the case, regenerate this file with moq.
+var _ dotimport.Service = &ServiceMock{}
+
+// ServiceMock is a mock implementation of dotimport.Service.
 //
 //     func TestSomethingThatUsesService(t *testing.T) {
 //
-//         // make and configure a mocked Service
+//         // make and configure a mocked dotimport.Service
 //         mockedService := &ServiceMock{
 //             UserFunc: func(ID string) (dotimport.User, error) {
-// 	               panic("TODO: mock out the User method")
+// 	               panic("mock out the User method")
 //             },
 //         }
 //
-//         // TODO: use mockedService in code that requires Service
-//         //       and then make assertions.
+//         // use mockedService in code that requires dotimport.Service
+//         // and then make assertions.
 //
 //     }
 type ServiceMock struct {

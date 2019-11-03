@@ -13,25 +13,29 @@ var (
 	lockMyInterfaceMockTwo   sync.RWMutex
 )
 
-// MyInterfaceMock is a mock implementation of MyInterface.
+// Ensure, that MyInterfaceMock does implement generate.MyInterface.
+// If this is not the case, regenerate this file with moq.
+var _ MyInterface = &MyInterfaceMock{}
+
+// MyInterfaceMock is a mock implementation of generate.MyInterface.
 //
 //     func TestSomethingThatUsesMyInterface(t *testing.T) {
 //
-//         // make and configure a mocked MyInterface
+//         // make and configure a mocked generate.MyInterface
 //         mockedMyInterface := &MyInterfaceMock{
 //             OneFunc: func() bool {
-// 	               panic("TODO: mock out the One method")
+// 	               panic("mock out the One method")
 //             },
 //             ThreeFunc: func() string {
-// 	               panic("TODO: mock out the Three method")
+// 	               panic("mock out the Three method")
 //             },
 //             TwoFunc: func() int {
-// 	               panic("TODO: mock out the Two method")
+// 	               panic("mock out the Two method")
 //             },
 //         }
 //
-//         // TODO: use mockedMyInterface in code that requires MyInterface
-//         //       and then make assertions.
+//         // use mockedMyInterface in code that requires generate.MyInterface
+//         // and then make assertions.
 //
 //     }
 type MyInterfaceMock struct {
