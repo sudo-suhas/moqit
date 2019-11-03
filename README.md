@@ -1,8 +1,14 @@
-![moq logo](moq-logo-small.png) [![Build Status](https://travis-ci.org/matryer/moq.svg?branch=master)](https://travis-ci.org/matryer/moq) [![Go Report Card](https://goreportcard.com/badge/github.com/matryer/moq)](https://goreportcard.com/report/github.com/matryer/moq)
+![moq logo](moq-logo-small.png) [![Build Status](https://travis-ci.org/sudo-suhas/moqit.svg?branch=master)](https://travis-ci.org/sudo-suhas/moqit) [![Go Report Card](https://goreportcard.com/badge/github.com/sudo-suhas/moqit)](https://goreportcard.com/report/github.com/sudo-suhas/moqit)
 
 Interface mocking tool for go generate.
 
 By [Mat Ryer](https://twitter.com/matryer) and [David Hernandez](https://github.com/dahernan), with ideas lovingly stolen from [Ernesto Jimenez](https://github.com/ernesto-jimenez).
+
+## Forked
+
+This fork allows to specify the name for the generated mock but removes the feature of generating mocks for multiple interfaces in a single command. To avoid confusion and to allow usage of both tools, the fork was renamed to `moqit`.
+
+Compare against upstream [`master...sudo-suhas:master`](https://github.com/matryer/moq/compare/master...sudo-suhas:master?w=1)
 
 ### What is Moq?
 
@@ -16,25 +22,27 @@ You can read more in the [Meet Moq blog post](http://bit.ly/meetmoq).
 
 ### Installing
 
-To start using Moq, just run go get:
+To start using Moqit, just run go get:
 ```
-$ go get github.com/matryer/moq
+$ go get go get github.com/sudo-suhas/moqit
 ```
 
 ### Usage
 
 ```
-moq [flags] destination interface [interface2 [interface3 [...]]]
+moqit [flags] destination interface
   -out string
     	output file (default stdout)
   -pkg string
     	package name (default will infer)
+  -mock string
+    	mock name (default will infer)
 ```
 
 In a command line:
 
 ```
-$ moq -out mocks_test.go . MyInterface
+$ moqit -out mocks_test.go . MyInterface
 ```
 
 In code (for go generate):
@@ -42,7 +50,7 @@ In code (for go generate):
 ```go
 package my
 
-//go:generate moq -out myinterface_moq_test.go . MyInterface
+//go:generate moqit -out myinterface_moq_test.go . MyInterface
 
 type MyInterface interface {
 	Method1() error
@@ -56,14 +64,14 @@ Then run `go generate` for your package.
 
 Mocking interfaces is a nice way to write unit tests where you can easily control the behaviour of the mocked object.
 
-Moq creates a struct that has a function field for each method, which you can declare in your test code.
+Moqit creates a struct that has a function field for each method, which you can declare in your test code.
 
-This this example, Moq generated the `EmailSenderMock` type:
+This this example, Moqit generated the `EmailSenderMock` type:
 
 ```go
 func TestCompleteSignup(t *testing.T) {
 
-	var sentTo string 
+	var sentTo string
 
 	mockedEmailSender = &EmailSenderMock{
 		SendFunc: func(to, subject, body string) error {
