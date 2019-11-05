@@ -1,3 +1,11 @@
+# Archived
+
+This repo has been archived as it is possible now to specify interface alias using moq(see [matryer/moq#110](https://github.com/matryer/moq/pull/110)):
+
+```
+$ moq -out ../mock/auth_mock.go -pkg mock . Client:AuthClient
+```
+
 ![moq logo](moq-logo-small.png) [![Build Status](https://travis-ci.org/sudo-suhas/moqit.svg?branch=master)](https://travis-ci.org/sudo-suhas/moqit) [![Go Report Card](https://goreportcard.com/badge/github.com/sudo-suhas/moqit)](https://goreportcard.com/report/github.com/sudo-suhas/moqit)
 
 Interface mocking tool for go generate.
